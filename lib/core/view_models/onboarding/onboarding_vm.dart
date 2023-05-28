@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:stackivy_ardilla/ui/pages/auth/login.dart';
+import 'package:stackivy_ardilla/ui/utils/utils.dart';
 
 import '../../models/onboarding_item.dart';
 
@@ -47,12 +49,12 @@ class OnboardingVM extends ChangeNotifier {
     if (currentPage < onboardingItems.length - 1) {
       _pageController.nextPage(
           duration: _pageNaviDuration, curve: _pageNaviCurve);
-    } else{
+    } else {
       navigateToLogin();
     }
   }
 
   void navigateToLogin() {
-
+    navigatorKey.currentState!.pushReplacementNamed(LoginPage.routeName);
   }
 }

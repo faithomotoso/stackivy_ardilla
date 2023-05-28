@@ -1,7 +1,9 @@
 class AuthRepository {
   Future signIn() async {}
 
-  Future signUpStart({required String emailAddress}) async {}
+  Future signUpStart({required String emailAddress}) async {
+    await Future.delayed(const Duration(seconds: 2));
+  }
 
   Future completeProfile(
       {required String userName,

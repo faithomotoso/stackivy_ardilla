@@ -1,12 +1,13 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:stackivy_ardilla/core/view_models/auth/auth_vm.dart';
 import 'package:stackivy_ardilla/ui/pages/auth/verify_email_page.dart';
 import 'package:stackivy_ardilla/ui/widgets/app_button.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/utils.dart';
 import '../../widgets/app_text_field.dart';
-import 'auth_base_page.dart';
 
 class SignUpForm extends StatefulWidget {
   final VoidCallback togglePageMode;
@@ -69,11 +70,13 @@ class _SignUpFormState extends State<SignUpForm> {
                     return AppButton(
                         onPressed: canSubmit
                             ? () {
-                                navigatorKey.currentState!
-                                    .pushNamed(VerifyEmailPage.routeName);
+                                Provider.of<AuthVM>(context, listen: false)
+                                    .initSignUp(
+                                        context: context,
+                                        email: emailController.text);
                               }
                             : null,
-                        buttonText: "Submit");
+                        buttonText: "Continue");
                   }),
               const SizedBox(
                 height: 10,

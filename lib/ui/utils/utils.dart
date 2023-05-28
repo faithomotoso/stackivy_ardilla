@@ -17,8 +17,22 @@ String getFullImagePath({required String imageName}) {
   return "assets/images/$imageName";
 }
 
-void showSnackbar({required String content}) {
-  scaffoldKey.currentState!.showSnackBar(SnackBar(content: Text(content)));
+void showSnackbar({required String content, Color? color}) {
+  scaffoldKey.currentState!.showSnackBar(SnackBar(
+    content: Text(
+      content,
+      style: const TextStyle(color: Colors.white),
+    ),
+    backgroundColor: color,
+  ));
+}
+
+void showSuccessSnackbar({required String content}) {
+  showSnackbar(content: content, color: Colors.green);
+}
+
+void showErrorSnackbar({required String content}) {
+  showSnackbar(content: content, color: Colors.red);
 }
 
 Future<bool> appLaunchUrl({required String url}) async {

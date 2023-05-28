@@ -50,7 +50,10 @@ class AuthVM extends ChangeNotifier {
           password: password,
           inviteCode: inviteCode);
       _user = User(
-          firstName: firstName, lastName: lastName, usernameOrEmail: userName);
+          firstName: firstName,
+          lastName: lastName,
+          usernameOrEmail: userName,
+          profilePictureUrl: "https://picsum.photos/id/58/1280/853.jpg");
 
       Navigator.pop(context);
 
@@ -71,8 +74,11 @@ class AuthVM extends ChangeNotifier {
       showLoadingIndicator(context: context);
 
       await _authRepository.login(username: username, password: password);
-      _user =
-          User(firstName: "Anita", lastName: "Ojeh", usernameOrEmail: username);
+      _user = User(
+          firstName: "Anita",
+          lastName: "Ojeh",
+          usernameOrEmail: username,
+          profilePictureUrl: "https://picsum.photos/id/58/1280/853.jpg");
 
       Navigator.pop(context);
       navigatorKey.currentState!.popUntil((route) => true);

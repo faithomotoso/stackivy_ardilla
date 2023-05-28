@@ -11,6 +11,7 @@ class AppTextField extends StatefulWidget {
   final bool isPassword;
   final FormFieldValidator? validator;
   final ValueChanged<String>? onChanged;
+  final TextInputType? textInputType;
 
   const AppTextField({
     required this.textController,
@@ -20,6 +21,7 @@ class AppTextField extends StatefulWidget {
     this.isPassword = false,
     this.validator,
     this.onChanged,
+    this.textInputType,
     Key? key,
   }) : super(key: key);
 
@@ -43,6 +45,7 @@ class _AppTextFieldState extends State<AppTextField> {
       obscureText: _hideInput,
       validator: widget.validator,
       onChanged: widget.onChanged,
+      keyboardType: widget.isPassword ? TextInputType.visiblePassword : widget.textInputType,
       decoration: InputDecoration(
           prefixIcon: widget.prefixIcon ??
               (widget.svgIconPath != null

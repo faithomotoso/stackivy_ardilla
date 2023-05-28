@@ -59,6 +59,24 @@ class _AuthBasePageState extends State<AuthBasePage> {
               ),
             ),
             Positioned(
+              top: 0,
+              left: 20,
+              child: ValueListenableBuilder<AuthPageMode>(
+                valueListenable: authPageModeNotifier,
+                builder: (ctx, mode, child) {
+                  if (mode == AuthPageMode.getStarted) {
+                    return BackButton(
+                      color: Colors.white,
+                      onPressed: () {
+                        toggleAuthPageMode();
+                      },
+                    );
+                  }
+                  return const SizedBox();
+                },
+              ),
+            ),
+            Positioned(
               bottom: 0,
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.7,

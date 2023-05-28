@@ -1,5 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:stackivy_ardilla/ui/pages/auth/verify_email_page.dart';
 import 'package:stackivy_ardilla/ui/widgets/app_button.dart';
 
 import '../../utils/colors.dart';
@@ -9,6 +10,7 @@ import 'auth_base_page.dart';
 
 class SignUpForm extends StatefulWidget {
   final VoidCallback togglePageMode;
+
   const SignUpForm({required this.togglePageMode, Key? key}) : super(key: key);
 
   @override
@@ -29,8 +31,7 @@ class _SignUpFormState extends State<SignUpForm> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-      const EdgeInsets.symmetric(horizontal: 20, vertical: 20)
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20)
           .copyWith(top: 30),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,9 +67,17 @@ class _SignUpFormState extends State<SignUpForm> {
                   valueListenable: canSubmitNotifier,
                   builder: (ctx, canSubmit, child) {
                     return AppButton(
-                        onPressed: canSubmit ? () {} : null, buttonText: "Submit");
+                        onPressed: canSubmit
+                            ? () {
+                                navigatorKey.currentState!
+                                    .pushNamed(VerifyEmailPage.routeName);
+                              }
+                            : null,
+                        buttonText: "Submit");
                   }),
-              const SizedBox(height: 10,),
+              const SizedBox(
+                height: 10,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,

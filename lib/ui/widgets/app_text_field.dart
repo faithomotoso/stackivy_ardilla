@@ -9,6 +9,8 @@ class AppTextField extends StatefulWidget {
   final String? svgIconPath;
   final String hintText;
   final bool isPassword;
+  final FormFieldValidator? validator;
+  final ValueChanged<String>? onChanged;
 
   const AppTextField({
     required this.textController,
@@ -16,6 +18,8 @@ class AppTextField extends StatefulWidget {
     this.prefixIcon,
     this.svgIconPath,
     this.isPassword = false,
+    this.validator,
+    this.onChanged,
     Key? key,
   }) : super(key: key);
 
@@ -37,6 +41,8 @@ class _AppTextFieldState extends State<AppTextField> {
     return TextFormField(
       controller: widget.textController,
       obscureText: _hideInput,
+      validator: widget.validator,
+      onChanged: widget.onChanged,
       decoration: InputDecoration(
           prefixIcon: widget.prefixIcon ??
               (widget.svgIconPath != null

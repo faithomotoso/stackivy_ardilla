@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:stackivy_ardilla/ui/pages/auth/login.dart';
+import 'package:stackivy_ardilla/ui/pages/auth/auth_base_page.dart';
 import 'package:stackivy_ardilla/ui/utils/utils.dart';
 
 import '../../models/onboarding_item.dart';
@@ -55,6 +55,6 @@ class OnboardingVM extends ChangeNotifier {
   }
 
   void navigateToLogin() {
-    navigatorKey.currentState!.pushReplacementNamed(LoginPage.routeName);
+    navigatorKey.currentState!.pushReplacementNamed(AuthBasePage.routeName);
   }
 }

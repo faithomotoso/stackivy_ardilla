@@ -62,4 +62,24 @@ class AuthVM extends ChangeNotifier {
       showErrorSnackbar(content: e.toString());
     }
   }
+
+  Future<void> login(
+      {required BuildContext context,
+      required String username,
+      required String password}) async {
+    try {
+      showLoadingIndicator(context: context);
+
+      await _authRepository.login(username: username, password: password);
+      _user =
+          User(firstName: "Anita", lastName: "Ojeh", usernameOrEmail: username);
+
+      Navigator.pop(context);
+      navigatorKey.currentState!.popUntil((route) => true);
+      navigatorKey.currentState!.pushReplacementNamed(Dashboard.routeName);
+    } catch (e) {
+      Navigator.pop(context);
+      showErrorSnackbar(content: e.toString());
+    }
+  }
 }

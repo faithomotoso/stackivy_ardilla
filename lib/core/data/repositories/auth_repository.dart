@@ -10,5 +10,8 @@ class AuthRepository {
       required String firstName,
       required String lastName,
       required String phoneNumber,
-      required String password}) async {}
+      required String password,
+      String? inviteCode}) async {
+    await Future.delayed(const Duration(seconds: 2));
+  }
 }

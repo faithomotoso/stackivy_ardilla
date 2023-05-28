@@ -1,5 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:stackivy_ardilla/core/view_models/auth/auth_vm.dart';
 import 'package:stackivy_ardilla/ui/utils/colors.dart';
 import 'package:stackivy_ardilla/ui/utils/utils.dart';
 import 'package:stackivy_ardilla/ui/widgets/app_button.dart';
@@ -165,11 +167,22 @@ class _CompleteProfilePageState extends State<CompleteProfilePage> {
                       const SizedBox(
                         height: 20,
                       ),
-                      AppButton(onPressed: () {
-                        if (formKey.currentState!.validate()) {
-
-                        }
-                      }, buttonText: "Create Account")
+                      AppButton(
+                          onPressed: () async {
+                            if (formKey.currentState!.validate()) {
+                              await Provider.of<AuthVM>(context, listen: false)
+                                  .completeProfile(
+                                      context: context,
+                                      userName: usernameController.text,
+                                      firstName: firstNameController.text,
+                                      lastName: lastNameController.text,
+                                      phoneNumber: phoneNumberController.text,
+                                      password: passwordController.text,
+                                      inviteCode:
+                                          invitationCodeController.text);
+                            }
+                          },
+                          buttonText: "Create Account")
                     ],
                   ),
                 )

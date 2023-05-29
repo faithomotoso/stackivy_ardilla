@@ -6,6 +6,10 @@ class DashboardVM extends ChangeNotifier {
 
   GlobalKey<SliderDrawerState> get drawerKey => _drawerKey;
 
+  int _selectedNavbarIndex = 0;
+
+  int get selectedNavbarIndex => _selectedNavbarIndex;
+
   void openDrawer() {
     _drawerKey.currentState!.openSlider();
   }
@@ -16,5 +20,10 @@ class DashboardVM extends ChangeNotifier {
 
   void toggleDrawer() {
     _drawerKey.currentState!.toggle();
+  }
+
+  void setNavbarIndex(int i) {
+    _selectedNavbarIndex = i;
+    notifyListeners();
   }
 }

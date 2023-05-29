@@ -8,6 +8,7 @@ import 'package:stackivy_ardilla/ui/utils/utils.dart';
 import 'package:stackivy_ardilla/ui/widgets/dashboard_header.dart';
 import 'package:stackivy_ardilla/ui/widgets/drawer.dart';
 import 'package:stackivy_ardilla/ui/widgets/extra_features_section.dart';
+import 'package:stackivy_ardilla/ui/widgets/investment_section.dart';
 import 'package:stackivy_ardilla/ui/widgets/quick_links_section.dart';
 
 class Dashboard extends StatefulWidget {
@@ -105,7 +106,9 @@ class _DashboardState extends State<Dashboard> {
                       SizedBox(
                         height: 20,
                       ),
-                      ExtraFeaturesSection()
+                      ExtraFeaturesSection(),
+                      SizedBox(height: 20,),
+                      InvestmentSection()
                     ],
                   ))
                 ],

@@ -69,7 +69,9 @@ class AppDrawer extends StatelessWidget {
                         ))),
                   )),
                   DrawerItemWidget(
-                      onTap: () {},
+                      onTap: () {
+                        showLogoutConfirmationDialog(context);
+                      },
                       svgIconPath: getFullSvgPath(iconName: "log_out.svg"),
                       itemText: "Log Out")
                 ],
@@ -79,5 +81,59 @@ class AppDrawer extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> showLogoutConfirmationDialog(BuildContext context) async {
+    await showDialog(
+        context: context,
+        builder: (ctx) {
+          return Center(
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              margin: const EdgeInsets.symmetric(horizontal: 30),
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(12)),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text(
+                    "Are you sure you want to Log Out?",
+                    style: TextStyle(color: AppColors.c3D0072, fontSize: 16),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          // Log out
+                          Provider.of<AuthVM>(context, listen: false).logOut();
+                        },
+                        style: ElevatedButton.styleFrom(
+                            elevation: 0,
+                            backgroundColor: AppColors.cFCE4EB,
+                            foregroundColor: AppColors.cE8356D),
+                        child: const Text(
+                          "Confirm",
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 30,
+                      ),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.pop(ctx);
+                          },
+                          child: Text("No, Cancel")),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          );
+        });
   }
 }

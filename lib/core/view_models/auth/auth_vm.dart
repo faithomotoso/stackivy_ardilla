@@ -5,6 +5,7 @@ import 'package:stackivy_ardilla/ui/pages/dashboard/dashboard.dart';
 import 'package:stackivy_ardilla/ui/utils/loading_indicator.dart';
 import 'package:stackivy_ardilla/ui/utils/utils.dart';
 
+import '../../../ui/pages/auth/auth_base_page.dart';
 import '../../../ui/pages/auth/verify_email_page.dart';
 
 class AuthVM extends ChangeNotifier {
@@ -13,6 +14,18 @@ class AuthVM extends ChangeNotifier {
   final AuthRepository _authRepository = AuthRepository();
 
   User? get user => _user;
+
+  void _clear() {
+    _user = null;
+    _initSignUpEmail = null;
+    notifyListeners();
+  }
+
+  void logOut() {
+    navigatorKey.currentState!.pushNamedAndRemoveUntil(
+        AuthBasePage.routeName, (_) => false);
+    _clear();
+  }
 
   Future<void> initSignUp({
     required BuildContext context,

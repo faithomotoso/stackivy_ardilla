@@ -7,6 +7,7 @@ import 'package:stackivy_ardilla/ui/utils/colors.dart';
 import 'package:stackivy_ardilla/ui/utils/utils.dart';
 import 'package:stackivy_ardilla/ui/widgets/dashboard_header.dart';
 import 'package:stackivy_ardilla/ui/widgets/drawer.dart';
+import 'package:stackivy_ardilla/ui/widgets/quick_links_section.dart';
 
 class Dashboard extends StatefulWidget {
   static const String routeName = "/dashboard";
@@ -93,7 +94,11 @@ class _DashboardState extends State<Dashboard> {
               child: Column(
                 children: [
                   const DashboardHeader(),
-                  Expanded(child: Placeholder())
+                  Expanded(child: ListView(
+                    children: [
+                      const QuickLinksSection(),
+                    ],
+                  ))
                 ],
               ),
             ),

@@ -22,8 +22,8 @@ class AuthVM extends ChangeNotifier {
   }
 
   void logOut() {
-    navigatorKey.currentState!.pushNamedAndRemoveUntil(
-        AuthBasePage.routeName, (_) => false);
+    navigatorKey.currentState!
+        .pushNamedAndRemoveUntil(AuthBasePage.routeName, (_) => false);
     _clear();
   }
 
@@ -68,11 +68,9 @@ class AuthVM extends ChangeNotifier {
           usernameOrEmail: userName,
           profilePictureUrl: "https://picsum.photos/id/58/1280/853.jpg");
 
-      Navigator.pop(context);
-
       // Remove everything from the route
-      navigatorKey.currentState!.popUntil((route) => true);
-      navigatorKey.currentState!.pushReplacementNamed(Dashboard.routeName);
+      navigatorKey.currentState!
+          .pushNamedAndRemoveUntil(Dashboard.routeName, (_) => false);
     } catch (e) {
       Navigator.pop(context);
       showErrorSnackbar(content: e.toString());
